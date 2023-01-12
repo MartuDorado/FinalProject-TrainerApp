@@ -99,5 +99,5 @@ $ cd MyPersonalTrainerApp
 - Run program
 
 ## VIEWS
-[HomePage](./assets/screen1.png)<br>
-[LoginPage](./assets/screen2.png)
+[HomePage](../assets/screen1.png)<br>
+[LoginPage](../assets/screen2.png)
