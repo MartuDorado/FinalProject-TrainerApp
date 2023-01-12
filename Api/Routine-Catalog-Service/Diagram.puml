@@ -1,0 +1,136 @@
+@startuml
+class com.finalproject.RoutineCatalogService.model.User {
+- String userName
+- String password
+- String name
+- LocalDate dateOfBirth
+- long age
+}
+interface com.finalproject.RoutineCatalogService.client.UserDataService {
++ void createUser(User)
++ User getUser(String)
++ void deleteUser(String,UserDTO)
++ void updatePassword(String,UserDTO)
+}
+class com.finalproject.RoutineCatalogService.RoutineCatalogServiceApplication {
++ RestTemplate getRestTemplate()
++ WebMvcConfigurer corsConfigurer()
++ {static} void main(String[])
+}
+class com.finalproject.RoutineCatalogService.DTO.AnnotationDTO {
+- String date
+- String commentary
+}
+interface com.finalproject.RoutineCatalogService.controller.interfaces.ICatalogController {
+~ Catalog getCatalog(String)
+~ void createCatalog(User)
+~ List<Routine> getAllRoutines()
+~ List<Routine> getAllByType(String)
+~ Routine getRoutine(Integer)
+~ Catalog updateRoutinesFollowUp(String,Integer)
+~ Catalog updateRoutinesDoneFollowUp(String,Integer)
+~ Catalog updateAnnotationsFollowUp(String,AnnotationDTO)
+}
+class com.finalproject.RoutineCatalogService.DTO.UserDTO {
+- String Password
+- String newPassword
+}
+class com.finalproject.RoutineCatalogService.controller.impl.CatalogController {
+~ ICatalogService iCatalogService
++ Catalog getCatalog(String)
++ void createCatalog(User)
++ List<Routine> getAllRoutines()
++ List<Routine> getAllByType(String)
++ Routine getRoutine(Integer)
++ Catalog updateRoutinesFollowUp(String,Integer)
++ Catalog updateRoutinesDoneFollowUp(String,Integer)
++ Catalog updateAnnotationsFollowUp(String,AnnotationDTO)
+}
+class com.finalproject.RoutineCatalogService.model.Catalog {
+- User user
+- FollowUp followUp
+}
+class com.finalproject.RoutineCatalogService.DTO.FollowUpDTO {
+- String followId
+}
+class com.finalproject.RoutineCatalogService.model.Exercise {
+- Integer id
+- String name
+- Integer reps
+- String description
+- String video
+- List<Block> blocks
+}
+class com.finalproject.RoutineCatalogService.model.Routine {
+- Integer id
+- LocalDate CREATION_DATE
+- String title
+- List<Block> blocks
+- List<FollowUp> followUpsActives
+- List<FollowUp> followUpsDones
+}
+class com.finalproject.RoutineCatalogService.model.Block {
+- Integer id
+- String title
+- Integer laps
+- List<Exercise> exercises
+- List<Routine> routines
+}
+interface com.finalproject.RoutineCatalogService.client.RoutineDataService {
++ Exercise getExercise(Integer)
++ List<Exercise> getAllExercises()
++ void createExercise(Exercise)
++ Block getBlock(Integer)
++ List<Block> getAllBlocks()
++ void createBlock(Block)
++ List<Routine> getAllRoutines()
++ Routine getRoutine(Integer)
++ List<Routine> getByType(String)
++ void createRoutine(Routine)
++ void deleteRoutine(Integer)
++ void createFollowUp(FollowUpDTO)
++ FollowUp getFollowUp(String)
++ FollowUp updateRoutinesFollowUp(String,Integer)
++ FollowUp updateRoutinesDoneFollowUp(String,Integer)
++ FollowUp updateAnnotationsFollowUp(String,AnnotationDTO)
++ FollowUp editAnnotation(String,AnnotationDTO)
+}
+class com.finalproject.RoutineCatalogService.service.impl.CatalogService {
+~ UserDataService userDataService
+~ RoutineDataService routineDataService
++ Catalog getCatalog(String)
++ void createCatalog(User)
++ List<Routine> getAllRoutines()
++ List<Routine> getAllByType(String)
++ Routine getRoutine(Integer)
++ Catalog updateRoutinesFollowUp(String,Integer)
++ Catalog updateRoutinesDoneFollowUp(String,Integer)
++ Catalog updateAnnotationsFollowUp(String,AnnotationDTO)
+}
+class com.finalproject.RoutineCatalogService.model.Annotation {
+- Integer id
+- LocalDate DATE
+- String commentary
+- FollowUp followUp
+}
+class com.finalproject.RoutineCatalogService.model.FollowUp {
+- String userName
+- List<Routine> routines
+- List<Routine> routinesDones
+- List<Annotation> annotations
+}
+interface com.finalproject.RoutineCatalogService.service.interfaces.ICatalogService {
+~ Catalog getCatalog(String)
+~ void createCatalog(User)
+~ List<Routine> getAllRoutines()
+~ List<Routine> getAllByType(String)
+~ Routine getRoutine(Integer)
+~ Catalog updateRoutinesFollowUp(String,Integer)
+~ Catalog updateRoutinesDoneFollowUp(String,Integer)
+~ Catalog updateAnnotationsFollowUp(String,AnnotationDTO)
+}
+
+
+com.finalproject.RoutineCatalogService.controller.interfaces.ICatalogController <|.. com.finalproject.RoutineCatalogService.controller.impl.CatalogController
+com.finalproject.RoutineCatalogService.service.interfaces.ICatalogService <|.. com.finalproject.RoutineCatalogService.service.impl.CatalogService
+@enduml
