@@ -1,5 +1,5 @@
 # FinalProject-TrainerApp
-![My_personal_trainer_app_logp](./assets/logo.png)
+![My_personal_trainer_app_logp](/assets/logo.png)
 
 > Hi 👋 ! I`m Martu!</br>
 > My final project is a training application, in this file you will find the corresponding information to be able to use it *So... here we go!*
